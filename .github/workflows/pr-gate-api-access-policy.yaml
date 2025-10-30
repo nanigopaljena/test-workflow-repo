@@ -1,0 +1,21 @@
+name: PR Gate Branch name test
+
+on:
+  pull_request:
+    branches:
+      - main
+      - ef-prod-na
+
+jobs:
+  API-Access-PR-Gate-Validation:
+    runs-on: self-hosted
+    steps:
+      - name: Set environment variables (safe)
+        id: set-vars
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          # Always quote expansions when writing to GITHUB_OUTPUT
+          echo "base_ref=$BASE_REF" >> "$GITHUB_OUTPUT"
+          echo "head_ref=$HEAD_REF" >> "$GITHUB_OUTPUT"
