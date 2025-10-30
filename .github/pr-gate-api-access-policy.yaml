@@ -8,9 +8,7 @@ on:
 
 jobs:
   API-Access-PR-Gate-Validation:
-    needs: determine-environment
     runs-on: ubuntu-latest
-    environment: ${{ needs.determine-environment.outputs.deploy_env }}
     steps:
       - name: Set environment variables
         env:
