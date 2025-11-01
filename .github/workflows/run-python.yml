@@ -19,14 +19,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Python version on runner
-        run: |
-          python3 --version
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-      - name: Running for ${{ matrix.env_name }}
+      - name: Running for env ${{ matrix.env_name }}
         run: |
           echo "Running job for environment: ${{ matrix.env_name }}"
 
       - name: Run hello script
         run: |
-          python3 hello.py "${{ matrix.env_name }}"
+          python hello.py "${{ matrix.env_name }}"
