@@ -1,9 +1,10 @@
 name: Run Python Hello (all envs)
 
 on:
-  workflow_dispatch: {}
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch: {}
 
 jobs:
   run-python-job:
@@ -12,20 +13,16 @@ jobs:
       matrix:
         env_name: [tst, psr, prod-na, prod-eu]
 
-    runs-on: in2-1033919mbp
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Show workspace
-        run: |
-          pwd
-          ls -R .
-
-      - name: Python version on runner
-        run: |
-          python3 --version
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
       - name: Which env is this job for?
         run: |
@@ -33,4 +30,4 @@ jobs:
 
       - name: Run hello script
         run: |
-          python3 hello.py "${{ matrix.env_name }}"
+          python hello.py "${{ matrix.env_name }}"
