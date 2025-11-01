@@ -11,18 +11,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        env_name: [tst]
+        env_name: [tst, psr, prod-na, prod-eu]
 
     runs-on: self-hosted
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Show workspace
-        run: |
-          pwd
-          ls -R .
 
       - name: Python version on runner
         run: |
