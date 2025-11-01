@@ -1,0 +1,33 @@
+name: Run Python Hello (all envs)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  run-python-job:
+    strategy:
+      fail-fast: false
+      matrix:
+        env_name: [tst, psr, prod-na, prod-eu]
+
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Which env is this job for?
+        run: |
+          echo "Running job for environment: ${{ matrix.env_name }}"
+
+      - name: Run hello script
+        run: |
+          python hello.py "${{ matrix.env_name }}"
