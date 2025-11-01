@@ -23,7 +23,7 @@ jobs:
         run: |
           pwd
           ls -R .
-          
+
       - name: Python version on runner
         run: |
           python3 --version
