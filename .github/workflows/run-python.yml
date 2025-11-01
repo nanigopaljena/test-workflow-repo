@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        env_name: [tst, prod-na]
+        env_name: [prod-au, prod-na]
 
     runs-on: self-hosted
 
