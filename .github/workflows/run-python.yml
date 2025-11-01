@@ -12,7 +12,7 @@ jobs:
       matrix:
         env_name: [tst, psr, prod-na, prod-eu]
 
-    runs-on: self-hosted
+    runs-on: in2-1033919mbp
 
     steps:
       - name: Checkout repo
