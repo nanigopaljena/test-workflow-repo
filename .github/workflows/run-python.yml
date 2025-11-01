@@ -19,10 +19,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Python version on runner
+        run: |
+          python3 --version
 
       - name: Which env is this job for?
         run: |
@@ -30,4 +29,4 @@ jobs:
 
       - name: Run hello script
         run: |
-          python hello.py "${{ matrix.env_name }}"
+          python3 hello.py "${{ matrix.env_name }}"
